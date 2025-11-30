@@ -5,11 +5,11 @@ import org.skypro.skyshop.product.Product;
 public class ProductBasket {
 
     // Создаём корзину для товаров.
-    private static Product[] products = new Product[5];
+    private Product[] products = new Product[5];
 
 
     // Добавляем продукты в корзину.
-    public static void fillingArray(Product product) {
+    public void fillingArray(Product product) {
         for (int i = 0; i < products.length; i++) {
             if (products[i] == null) {
                 products[i] = product;
@@ -22,7 +22,7 @@ public class ProductBasket {
     }
 
     // Расчёт стоимости корзины.
-    public static void basketCostCalculation() {
+    public void basketCostCalculation() {
         int totalСost = 0;
         for (Product p : products) {
             if (p != null) {
@@ -33,7 +33,7 @@ public class ProductBasket {
     }
 
     // Печатаем содержимое корзины.
-    public static void printingContentsBasket() {
+    public void printingContentsBasket() {
         if (products[0] == null) {
             System.out.println("В корзине пусто");
         }
@@ -46,11 +46,11 @@ public class ProductBasket {
     }
 
     // Проверяем наличие продукта в корзине.
-    public static boolean checkingForAvailability(String product) {
+    public boolean checkingForAvailability(String product) {
         for (Product p : products) {
             if (p == null) {
                 break;
-            } else if (p.getProdukt().equals(product)) {
+            } else if (p.getStationery().equals(product)) {
                 return true;
             }
         }
@@ -58,7 +58,7 @@ public class ProductBasket {
     }
 
     // Очистка корзины.
-    public static void clearingArray() {
+    public void clearingArray() {
         for (int i = 0; i < products.length; i++) {
             if (products[i] != null) {
                 products[i] = null;

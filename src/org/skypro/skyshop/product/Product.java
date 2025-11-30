@@ -2,22 +2,22 @@ package org.skypro.skyshop.product;
 
 import java.util.Objects;
 
-// Создаём класс товара Produkt
+// Создаём класс товара Product
 public class Product {
 
     // Объявляем переменные.
-    private String produkt;
+    private String stationery;
     private int cost;
 
     // Создаём конструктор.
-    public Product(String produkt, int cost) {
-        this.produkt = produkt;
+    public Product(String stationery, int cost) {
+        this.stationery = stationery;
         this.cost = cost;
     }
 
     // Создаём геттеры.
-    public String getProdukt() {
-        return produkt;
+    public String getStationery() {
+        return stationery;
     }
 
     public int getCost() {
@@ -26,7 +26,7 @@ public class Product {
 
     // Переопределяем метод toString.
     public String toString() {
-        return "имя продукта-" + getProdukt() + ": " + "стоимость-" + getCost();
+        return "имя продукта-" + getStationery() + ": " + "стоимость-" + getCost();
     }
 
     // Переопределение equals.
@@ -36,7 +36,7 @@ public class Product {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Product product = (Product) o;
-        return Objects.equals(produkt, product.produkt);
+        Product stationery = (Product) o;
+        return Objects.equals(stationery, stationery.stationery);
     }
 }
