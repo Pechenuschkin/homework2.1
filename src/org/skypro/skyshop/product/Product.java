@@ -3,31 +3,26 @@ package org.skypro.skyshop.product;
 import java.util.Objects;
 
 // Создаём класс товара Product
-public class Product {
+public abstract class Product {
 
     // Объявляем переменные.
     private String stationery;
-    private int cost;
+
 
     // Создаём конструктор.
-    public Product(String stationery, int cost) {
+    public Product(String stationery) {
         this.stationery = stationery;
-        this.cost = cost;
+
     }
 
     // Создаём геттеры.
     public String getStationery() {
+
         return stationery;
     }
 
-    public int getCost() {
-        return cost;
-    }
+    public abstract int getCost();
 
-    // Переопределяем метод toString.
-    public String toString() {
-        return "имя продукта-" + getStationery() + ": " + "стоимость-" + getCost();
-    }
 
     // Переопределение equals.
     @Override
@@ -39,4 +34,7 @@ public class Product {
         Product stationery = (Product) o;
         return Objects.equals(stationery, stationery.stationery);
     }
+
+    // Добавляем метод isSpecial.
+    public abstract boolean isSpecial();
 }
