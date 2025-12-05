@@ -1,18 +1,22 @@
 package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.ProductBasket;
+import org.skypro.skyshop.product.DiscountedProduct;
+import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.SimpleProduct;
 
 public class App {
     public static void main(String[] args) {
 
         // Создаём продукты.
-        Product pencil = new Product("Карандаш", 55);
-        Product aPen = new Product("Ручка", 75);
-        Product feltTipPen = new Product("Фломастер", 105);
-        Product copybook = new Product("Тетрадь", 97);
-        Product notepad = new Product("Блокнот", 87);
-        Product bag = new Product("Сумка", 15);
+        Product pencil = new SimpleProduct("Карандаш", 55);
+        Product aPen = new DiscountedProduct("Ручка", 75, 10);
+        Product feltTipPen = new SimpleProduct("Фломастер", 105);
+        Product copybook = new FixPriceProduct("Тетрадь");
+        Product notepad = new SimpleProduct("Блокнот", 87);
+        Product bag = new SimpleProduct("Сумка", 15);
+
 
         // Создаём экземпляр класса для вызова не статичного метода.
         ProductBasket productBasket1 = new ProductBasket();

@@ -43,6 +43,15 @@ public class ProductBasket {
             }
         }
         basketCostCalculation();
+        int count = 0;
+        for (Product p : products) {
+            if (p == null) {
+                break;
+            } else if (p.isSpecial()) {
+                count++;
+            }
+        }
+        System.out.println("Специальных товаров:" + count);
     }
 
     // Проверяем наличие продукта в корзине.
