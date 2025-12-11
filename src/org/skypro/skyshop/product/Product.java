@@ -1,23 +1,22 @@
 package org.skypro.skyshop.product;
 
+import org.skypro.skyshop.article.Searchable;
+
 import java.util.Objects;
 
 // Создаём класс товара Product
-public abstract class Product {
+public abstract class Product implements Searchable {
 
     // Объявляем переменные.
     private String stationery;
 
-
     // Создаём конструктор.
     public Product(String stationery) {
         this.stationery = stationery;
-
     }
 
     // Создаём геттеры.
     public String getStationery() {
-
         return stationery;
     }
 
@@ -37,4 +36,22 @@ public abstract class Product {
 
     // Добавляем метод isSpecial.
     public abstract boolean isSpecial();
+
+    // Переопределяем метод searchTerm
+    @Override
+    public String searchTerm() {
+        return stationery;
+    }
+
+    // Переопределяем метод getOfTypeContent
+    @Override
+    public String getOfTypeContent() {
+        return "PRODUCT";
+    }
+
+    // Переопределяем метод getOfNameObject
+    @Override
+    public String getOfNameObject() {
+        return stationery;
+    }
 }

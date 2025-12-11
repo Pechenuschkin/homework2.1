@@ -7,7 +7,6 @@ public class ProductBasket {
     // Создаём корзину для товаров.
     private Product[] products = new Product[5];
 
-
     // Добавляем продукты в корзину.
     public void fillingArray(Product product) {
         for (int i = 0; i < products.length; i++) {
