@@ -24,7 +24,7 @@ public class Article implements Searchable {
     // Переопределяем метод toString.
     @Override
     public String toString() {
-        return "Название статьи-" + getArticleTitle() + ":" + "\nТекст статьи-" + getTextArticle();
+        return getArticleTitle() + ":" + "\n" + getTextArticle();
     }
 
     // Переопределяем метод searchTerm
