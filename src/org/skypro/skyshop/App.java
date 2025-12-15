@@ -1,10 +1,15 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.article.Article;
+import org.skypro.skyshop.article.Searchable;
 import org.skypro.skyshop.basket.ProductBasket;
+import org.skypro.skyshop.basket.SearchEngine;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
+
+import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
@@ -65,5 +70,32 @@ public class App {
         System.out.println("<Поиск товара в пустой корзине.>");
         String productCart2 = "Фломастер";
         System.out.println(productBasket1.checkingForAvailability(productCart2));
+        System.out.println();
+
+        // Добавляем продукты в массив поискового движка.
+        SearchEngine searchEngine = new SearchEngine(10);
+        searchEngine.add(pencil);
+        searchEngine.add(aPen);
+        searchEngine.add(feltTipPen);
+        searchEngine.add(copybook);
+
+        // Создаём объекты типа Article.
+        Article article1 = new Article("Шариковоя ручка", "В обычной шариковой ручке достаточно чернил, чтобы провести линию в несколько километров длиной.");
+        Article article2 = new Article("Первые ножницы", "Ножницы были изобретены 3-4 тыс. лет назад");
+        Article article3 = new Article("Первый степлер", "Самый первый степлер был ручной работы и изготовлен в XVIII веке");
+
+        // Добавляем статьи в массив поискового движка.
+        searchEngine.add(article1);
+        searchEngine.add(article2);
+        searchEngine.add(article3);
+
+        // Выводим результат.
+        System.out.println("Выводим результат");
+        String search1 = "Ручка";
+
+        System.out.println(Arrays.toString(searchEngine.search(search1)));
+
+        search1 = "Первый";
+        System.out.println(Arrays.toString(searchEngine.search(search1)));
     }
 }
