@@ -5,10 +5,14 @@ public class SimpleProduct extends Product {
     // Создаём поле цены.
     private int cost;
 
+    // Добавили в конструктор проверку по условиям.
     // Создаём конструктор.
     public SimpleProduct(String stationery, int cost) {
         super(stationery);
         this.cost = cost;
+        if (cost <= 0) {
+            throw new IllegalArgumentException("Некорректно указана цена");
+        }
     }
 
     // Создаём геттер.

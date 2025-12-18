@@ -4,6 +4,7 @@ import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.article.Searchable;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.basket.SearchEngine;
+import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
@@ -90,12 +91,43 @@ public class App {
         searchEngine.add(article3);
 
         // Выводим результат.
-        System.out.println("Выводим результат");
+        System.out.println("<Выводим результат>");
         String search1 = "Ручка";
 
         System.out.println(Arrays.toString(searchEngine.search(search1)));
 
         search1 = "Первый";
         System.out.println(Arrays.toString(searchEngine.search(search1)));
+        System.out.println();
+
+// Демонстрация проверки данных.
+        System.out.println("<Демонстрация проверки данных>");
+        try {
+            Product aPen1 = new DiscountedProduct(null, 45, 10);
+        } catch (IllegalArgumentException i) {
+            System.out.println(i.getMessage());
+        }
+        try {
+            Product pencil1 = new SimpleProduct("Кисточка", 0);
+        } catch (IllegalArgumentException i) {
+            System.out.println(i.getMessage());
+        }
+        System.out.println();
+
+        // Поиск самого подходящего элемента.
+        System.out.println("<Поиск самого подходящего элемента.>");
+        search1 = "е";
+        try {
+            System.out.println(searchEngine.searchable(search1));
+        } catch (BestResultNotFound e) {
+            System.out.println(e.getMessage());
+        }
+        search1 = "Кисточка";
+        try {
+            System.out.println(searchEngine.searchable(search1));
+        } catch (BestResultNotFound e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }

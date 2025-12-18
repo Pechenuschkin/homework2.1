@@ -1,6 +1,7 @@
 package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.article.Searchable;
+import org.skypro.skyshop.exception.BestResultNotFound;
 
 public class SearchEngine {
 
@@ -36,5 +37,30 @@ public class SearchEngine {
         return results;
     }
 
+    // Метод поиска самого подходящего элемента.
+    public Searchable searchable(String search) throws BestResultNotFound {
+        Searchable searchable = null;
+        int maxQuantity = 0;
+        for (Searchable s : searchableItems) {
+            if (s != null) {
+                int quantity = 0;
+                int index = 0;
+                int indexStrings = s.searchTerm().indexOf(search, index);
+                while (indexStrings != -1) {
+                    quantity++;
+                    index = indexStrings + search.length();
+                    indexStrings = s.searchTerm().indexOf(search, index);
+                }
+                if (quantity > maxQuantity) {
+                    maxQuantity = quantity;
+                    searchable = s;
+                }
+            }
+        }
+        if (maxQuantity == 0) {
+            throw new BestResultNotFound("Элемента не нашлось!");
+        }
+        return searchable;
+    }
 
 }
