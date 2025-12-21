@@ -10,9 +10,13 @@ public abstract class Product implements Searchable {
     // Объявляем переменные.
     private String stationery;
 
+    // Добавили в конструктор проверку по условиям.
     // Создаём конструктор.
     public Product(String stationery) {
         this.stationery = stationery;
+        if (stationery == null || stationery.isBlank()) {
+            throw new IllegalArgumentException("Неправильное название продукта");
+        }
     }
 
     // Создаём геттеры.
@@ -53,5 +57,10 @@ public abstract class Product implements Searchable {
     @Override
     public String getOfNameObject() {
         return stationery;
+    }
+
+
+    public static void check(String stationery) {
+
     }
 }
