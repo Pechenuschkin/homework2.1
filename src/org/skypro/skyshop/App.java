@@ -1,7 +1,6 @@
 package org.skypro.skyshop;
 
 import org.skypro.skyshop.article.Article;
-import org.skypro.skyshop.article.Searchable;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.basket.SearchEngine;
 import org.skypro.skyshop.exception.BestResultNotFound;
@@ -28,20 +27,16 @@ public class App {
         ProductBasket productBasket1 = new ProductBasket();
 
         // Добавляем продукты в корзину.
-        productBasket1.fillingArray(pencil);
-        productBasket1.fillingArray(aPen);
-        productBasket1.fillingArray(feltTipPen);
-        productBasket1.fillingArray(copybook);
-        productBasket1.fillingArray(notepad);
+        productBasket1.addProduct(pencil);
+        productBasket1.addProduct(aPen);
+        productBasket1.addProduct(feltTipPen);
+        productBasket1.addProduct(aPen);
+        productBasket1.addProduct(copybook);
+        productBasket1.addProduct(notepad);
+        productBasket1.addProduct(aPen);
 
 // Печатаем содержимое корзины.
         System.out.println("<Печатаем содержимое корзины.>");
-        productBasket1.printingContentsBasket();
-        System.out.println();
-
-        // Добавляем продукт в заполненную корзину.
-        System.out.println("<Добавляем продукт в заполненную корзину.>");
-        productBasket1.fillingArray(bag);
         productBasket1.printingContentsBasket();
         System.out.println();
 
@@ -73,8 +68,17 @@ public class App {
         System.out.println(productBasket1.checkingForAvailability(productCart2));
         System.out.println();
 
+        // Добавляем продукты в корзину после очистки корзины.
+        productBasket1.addProduct(pencil);
+        productBasket1.addProduct(aPen);
+        productBasket1.addProduct(feltTipPen);
+        productBasket1.addProduct(aPen);
+        productBasket1.addProduct(copybook);
+        productBasket1.addProduct(notepad);
+        productBasket1.addProduct(aPen);
+
         // Добавляем продукты в массив поискового движка.
-        SearchEngine searchEngine = new SearchEngine(10);
+        SearchEngine searchEngine = new SearchEngine();
         searchEngine.add(pencil);
         searchEngine.add(aPen);
         searchEngine.add(feltTipPen);
@@ -93,11 +97,10 @@ public class App {
         // Выводим результат.
         System.out.println("<Выводим результат>");
         String search1 = "Ручка";
-
-        System.out.println(Arrays.toString(searchEngine.search(search1)));
+        System.out.println(searchEngine.search(search1));
 
         search1 = "Первый";
-        System.out.println(Arrays.toString(searchEngine.search(search1)));
+        System.out.println(searchEngine.search(search1));
         System.out.println();
 
 // Демонстрация проверки данных.
@@ -128,6 +131,32 @@ public class App {
         } catch (BestResultNotFound e) {
             System.out.println(e.getMessage());
         }
+        System.out.println();
 
+        // Печатаем содержимое корзины.
+        System.out.println("<Печатаем содержимое корзины.>");
+        productBasket1.printingContentsBasket();
+        System.out.println();
+
+        //Удаление продукта по имени из корзины
+        System.out.println("<Удаление продукта по имени из корзины>");
+        search1 = "Ручка";
+        productBasket1.deletedByName(search1);
+        System.out.println();
+
+        // Печатаем содержимое корзины.
+        System.out.println("<Печатаем содержимое корзины.>");
+        productBasket1.printingContentsBasket();
+        System.out.println();
+
+        //Удаление несуществующего продукта по имени из корзины
+        System.out.println("<Удаление несуществующего продукта по имени из корзины>");
+        search1 = "Глобус";
+        productBasket1.deletedByName(search1);
+        System.out.println();
+
+        // Печатаем содержимое корзины.
+        System.out.println("<Печатаем содержимое корзины.>");
+        productBasket1.printingContentsBasket();
     }
 }
