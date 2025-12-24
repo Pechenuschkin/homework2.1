@@ -2,21 +2,20 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
+import java.util.*;
+
 public class ProductBasket {
 
+    // Изменили массив на список.
     // Создаём корзину для товаров.
-    private Product[] products = new Product[5];
+    public List<Product> products = new LinkedList<>();
 
     // Добавляем продукты в корзину.
-    public void fillingArray(Product product) {
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] == null) {
-                products[i] = product;
-                break;
-            } else if (products[products.length - 1] != null) {
-                System.out.println("Невозможно добавить продукт");
-                break;
-            }
+    public void addProduct(Product product) {
+        if (product != null) {
+            products.add(product);
+        } else {
+            System.out.println("Нельзя добавить null");
         }
     }
 
@@ -33,9 +32,6 @@ public class ProductBasket {
 
     // Печатаем содержимое корзины.
     public void printingContentsBasket() {
-        if (products[0] == null) {
-            System.out.println("В корзине пусто");
-        }
         for (Product p : products) {
             if (p != null) {
                 System.out.println(p);
@@ -65,12 +61,35 @@ public class ProductBasket {
         return false;
     }
 
-    // Очистка корзины.
+    //  Очистка корзины.
     public void clearingArray() {
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] != null) {
-                products[i] = null;
+        Iterator<Product> iterator = products.iterator();
+        while (iterator.hasNext()) {
+            Product element = iterator.next();
+            if (element != null) {
+                iterator.remove();
             }
         }
     }
+
+    //Удаление продукта по имени из корзины
+    public void deletedByName(String name) {
+        List<Product> deletedProduct = new LinkedList<>();
+        Iterator<Product> iterator = products.iterator();
+        while (iterator.hasNext()) {
+            Product element = iterator.next();
+            if (element.getStationery().equals(name)) {
+                deletedProduct.add(element);
+                iterator.remove();
+            }
+        }
+        if (deletedProduct.isEmpty()) {
+            System.out.println("Список пуст");
+        } else {
+            System.out.println(deletedProduct);
+        }
+
+    }
+
 }
+

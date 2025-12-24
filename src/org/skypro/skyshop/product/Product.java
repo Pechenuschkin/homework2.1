@@ -60,7 +60,5 @@ public abstract class Product implements Searchable {
     }
 
 
-    public static void check(String stationery) {
 
-    }
 }

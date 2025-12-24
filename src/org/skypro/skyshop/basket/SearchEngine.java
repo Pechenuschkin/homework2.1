@@ -3,35 +3,36 @@ package org.skypro.skyshop.basket;
 import org.skypro.skyshop.article.Searchable;
 import org.skypro.skyshop.exception.BestResultNotFound;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 public class SearchEngine {
 
+    // Изменили массив на список.
     // Объявляем поля класса.
-    private Searchable[] searchableItems;
-    private int count = 0;
+    private List<Searchable> searchableItems;
+
 
     //  Создаём конструктор.
-    public SearchEngine(int size) {
-        this.searchableItems = new Searchable[size];
+    public SearchEngine() {
+        this.searchableItems = new LinkedList<>();
     }
 
-    // Добавляем новый объект в массив поискового движка.
+    // Добавляем новый объект в список поискового движка.
     public void add(Searchable item) {
-        if (count < searchableItems.length) {
-            searchableItems[count++] = item;
+        if (item != null) {
+            searchableItems.add(item);
         }
     }
 
+    // Изменили массив на список.
     // Поиска по массиву Searchable.
-    public Searchable[] search(String searchTerm) {
-        Searchable[] results = new Searchable[5];
-        int resultCount = 0;
+    public List<Searchable> search(String searchTerm) {
+        List<Searchable> results = new LinkedList<>();
         for (Searchable item : searchableItems) {
             if (item != null && item.searchTerm().contains(searchTerm)) {
-                if (resultCount < 5) {
-                    results[resultCount++] = item;
-                } else {
-                    break;
-                }
+                results.add(item);
             }
         }
         return results;
